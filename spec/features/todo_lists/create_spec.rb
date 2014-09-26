@@ -38,7 +38,7 @@ describe "Creating todo lists" do
 		click_link "New Todo list"
 		expect(page).to have_content("New todo_list")
 
-		fill_in "Title", with: "Hi"
+		fill_in "Title", with: "Ha"
 		fill_in "Description", with: "This is what I am doing today."
 		click_button "Create Todo list"
 
