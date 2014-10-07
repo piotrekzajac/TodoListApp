@@ -4,13 +4,6 @@ describe "Viewing todo items" do
 	#let!(:todo_list) { TodoList.create(title: "Grocery list", description: "Groceries") }  # why it doesn't work?!
 	let!(:todo_list) { TodoList.create(title: "Groceries", description: "Grocery list.") }
 
-	def visit_todo_list(list)  
-		visit "/todo_lists"
-		within "#todo_list_#{list.id}" do
-			click_link "List Items"
-		end
-	end
-
 	it "displays no items when a todo list is empty" do
 		visit_todo_list(todo_list)
 		expect(page.all("ul.todo_items li").size).to eq(0)		# looks for all css selectors ul with class todo_items in li
