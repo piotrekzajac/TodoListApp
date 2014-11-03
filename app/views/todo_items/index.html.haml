@@ -1,0 +1,23 @@
+#todo_list_content
+  %h1= @todo_list.title
+
+  %table.todo_items
+    %thead
+      %tr
+        %th{:width => "25%"} Completed?
+        %th{:width => "65%"} Content
+        %th{:width => "10%"} Functions
+    %tbody
+      - @todo_list.todo_items.each do |todo_item|
+        %tr{:id => dom_id(todo_item)}
+          %td
+            - if todo_item.completed?
+              = todo_item.completed_at
+            - else
+              = link_to 'Mark Complete', complete_todo_list_todo_item_path(todo_item), method: :patch
+          %td= todo_item.content
+          %td
+            = link_to 'Edit', edit_todo_list_todo_item_path(todo_item)
+            = link_to 'Delete', todo_list_todo_item_path(todo_item), method: :delete, data: { confirm: "Are you sure?" }
+
+  %p= link_to 'New Todo Item', new_todo_list_todo_item_path

@@ -1,0 +1,17 @@
+%h1= @todo_list.title
+%h2= @todo_list.description
+
+- if @todo_list.has_incompleted_items?
+  %h3 Incompleted items:
+  %ul
+    - @todo_list.todo_items.incomplete.each do |todo_item|
+      %li= todo_item.content
+
+- if @todo_list.has_completed_items?
+  %h3 Completed items:
+  %ul
+    - @todo_list.todo_items.complete.each do |todo_item|
+      %li= todo_item.content
+
+= link_to 'Edit', edit_todo_list_path(@todo_list)
+= link_to 'Back', todo_lists_path
